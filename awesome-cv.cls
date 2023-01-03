@@ -369,6 +369,9 @@
 \newcommand*{\headersocialsep}[1][\quad\textbar\quad]{\def\@headersocialsep{#1}}
 \headersocialsep
 
+% Others
+\newcommand{\acvSectionTopSkip}{3mm}
+\newcommand{\acvSectionContentTopSkip}{2.5mm}
 
 %-------------------------------------------------------------------------------
 %                Commands for utilities
@@ -577,7 +580,7 @@
   \end{tabular*}
 }
 
-% Define an environment for cvhonor
+% Define an environment for additionals
 \newenvironment{additionals}{
   \begin{center}
     \setlength\tabcolsep{0pt}
@@ -608,6 +611,22 @@
 % Usage: \cvhonor{<position>}{<title>}{<location>}{<date>}
 \newcommand*{\cvhonor}[4]{
   \honordatestyle{#4} & \honortitlestyle{#2} & \honorpositionstyle{#1} & \honorlocationstyle{#3}
+  \\
+}
+
+% Define an environment for cvhonor
+\newenvironment{cvsummary}{
+  \begin{center}
+    \setlength\tabcolsep{0pt}
+    \setlength{\extrarowheight}{0pt}
+    \begin{tabular*}{\textwidth}{@{\extracolsep{\fill}} L{17cm}}
+}{
+    \end{tabular*}
+  \end{center}
+}
+
+\newcommand*{\summary}[1]{
+  \honordatestyle{#1} 
   \\
 }
 
@@ -653,13 +672,13 @@
 
 % Define a paragraph for cvletter
 % Usage: \cvparagraph{<paragraph-title>}
-\newcommand{\cvparagraph}[1]{
-  \par\addvspace{2.5ex}
-  \phantomsection{}
-  \paragraphstyle{#1}
-  \color{gray}\vhrulefill{0.9pt}
-  \par\nobreak\addvspace{0.4ex}
-}
+% \newcommand{\cvparagraph}[1]{
+%   \par\addvspace{2.5ex}
+%   \phantomsection{}
+%   \paragraphstyle{#1}
+%   \color{gray}\vhrulefill{0.9pt}
+%   \par\nobreak\addvspace{0.4ex}
+% }
 
 % Define a title of the cover letter
 % Usage: \makelettertitle
