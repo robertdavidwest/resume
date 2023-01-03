@@ -401,8 +401,8 @@
     \vspace{0.4mm}
     \ifthenelse{\isundefined{\@position}}{}{\headerpositionstyle{\@position\\}}
     \vspace{0.4mm}
-    \ifthenelse{\isundefined{\@address}}{}{\headeraddressstyle{\@address\\}}
-    \vspace{-0.5mm}
+    % \ifthenelse{\isundefined{\@address}}{}{\headeraddressstyle{\@address\\}}
+    % \vspace{0.4mm}
     \headersocialstyle{
       \newbool{isstart}
       \setbool{isstart}{true}
@@ -422,7 +422,7 @@
             {\@headersocialsep}
           \href{mailto:\@email}{\faEnvelope\ \@email}
         }
-      \ifthenelse{\isundefined{\@homepage}}
+      \ifthenelse{\isundefined{\@address}}
         {}
         {
           \ifbool{isstart}
@@ -430,7 +430,18 @@
               \setbool{istart}{false} 
             }
             {\@headersocialsep}
+            {\@address}
+        }
+    } \\
+    \vspace{0.4mm}
+    \headersocialstyle{
+      \newbool{isstart}
+      \setbool{isstart}{true}
+      \ifthenelse{\isundefined{\@homepage}}
+        {}
+        {
           \href{http://\@homepage}{\faHome\ \@homepage}
+          \setbool{isstart}{false}
         }
       \ifthenelse{\isundefined{\@github}}
         {}
@@ -442,6 +453,16 @@
             {\@headersocialsep}
           \href{https://github.com/\@github}{\faGithubSquare\ \@github}
         }
+        \ifthenelse{\isundefined{\@linkedin}}
+        {}
+        {
+          \ifbool{isstart}
+          {
+            \setbool{istart}{false} 
+            }
+            {\@headersocialsep}
+            \href{https://www.linkedin.com/in/\@linkedin}{\faLinkedinSquare\ \@linkedin}
+            }
       \ifthenelse{\isundefined{\@stackoverflowid}}
         {}
         {
@@ -450,17 +471,7 @@
               \setbool{istart}{false} 
             }
             {\@headersocialsep}
-          \href{https://stackoverflow.com/users/\@stackoverflowid}{\faStackOverflow\ \@stackoverflowname}
-        }
-      \ifthenelse{\isundefined{\@linkedin}}
-        {}
-        {
-          \ifbool{isstart}
-            {
-              \setbool{istart}{false} 
-            }
-            {\@headersocialsep}
-          \href{https://www.linkedin.com/in/\@linkedin}{\faLinkedinSquare\ \@linkedin}
+            \href{https://stackoverflow.com/users/\@stackoverflowid}{\faStackOverflow\ \@stackoverflowname}
         }
       \ifthenelse{\isundefined{\@twitter}}
         {}
@@ -571,7 +582,7 @@
   \begin{center}
     \setlength\tabcolsep{0pt}
     \setlength{\extrarowheight}{0pt}
-    \begin{tabular*}{\textwidth}{@{\extracolsep{\fill}} L{2.0cm} L{13.0cm} R{1.5cm}}
+    \begin{tabular*}{\textwidth}{@{\extracolsep{\fill}} L{2.0cm} L{20.0cm} R{1.5cm}}
 }{
     \end{tabular*}
   \end{center}
@@ -588,7 +599,7 @@
   \begin{center}
     \setlength\tabcolsep{0pt}
     \setlength{\extrarowheight}{0pt}
-    \begin{tabular*}{\textwidth}{@{\extracolsep{\fill}} C{1.5cm} L{13.0cm} R{2.5cm}}
+    \begin{tabular*}{\textwidth}{@{\extracolsep{\fill}} L{2.0cm} L{9.0cm} L{3.0cm} R{2.5cm}}
 }{
     \end{tabular*}
   \end{center}
@@ -596,7 +607,7 @@
 % Define a line of cv information(honor, award or something else)
 % Usage: \cvhonor{<position>}{<title>}{<location>}{<date>}
 \newcommand*{\cvhonor}[4]{
-  \honordatestyle{#4} & \honorpositionstyle{#1}, \honortitlestyle{#2} & \honorlocationstyle{#3}
+  \honordatestyle{#4} & \honortitlestyle{#2} & \honorpositionstyle{#1} & \honorlocationstyle{#3}
   \\
 }
 
