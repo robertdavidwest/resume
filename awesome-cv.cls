@@ -79,7 +79,7 @@
 % Needed to manage math fonts
 \RequirePackage[]{unicode-math}
 % Needed to use icons from font-awesome
-% (https://github.com/posquit0/latex-fontawesome)
+% (https://posquit0/latex-fontawesome)
 \RequirePackage{fontawesome}
 % Needed to deal a paragraphs
 \RequirePackage{parskip}
@@ -223,9 +223,9 @@
 % For fundamental structures
 \newcommand*{\headerfirstnamestyle}[1]{{\fontsize{40pt}{1em}\headerfontlight\color{graytext} #1}}
 \newcommand*{\headerlastnamestyle}[1]{{\fontsize{40pt}{1em}\headerfont\bfseries\color{text} #1}}
-\newcommand*{\headerpositionstyle}[1]{{\fontsize{10pt}{1em}\bodyfont\scshape\color{awesome} #1}}
+\newcommand*{\headerpositionstyle}[1]{{\fontsize{9pt}{1em}\bodyfont\scshape\color{awesome} #1}}
 \newcommand*{\headeraddressstyle}[1]{{\fontsize{8pt}{1em}\headerfont\itshape\color{lighttext} #1}}
-\newcommand*{\headersocialstyle}[1]{{\fontsize{6.8pt}{1em}\headerfont\color{text} #1}}
+\newcommand*{\headersocialstyle}[1]{{\fontsize{7.5pt}{1em}\headerfont\color{text} #1}}
 \newcommand*{\headerquotestyle}[1]{{\fontsize{9pt}{1em}\bodyfont\itshape\color{darktext} #1}}
 \newcommand*{\footerstyle}[1]{{\fontsize{8pt}{1em}\footerfont\scshape\color{lighttext} #1}}
 \newcommand*{\sectionstyle}[1]{{\fontsize{16pt}{1em}\bodyfont\bfseries\color{text}\@sectioncolor #1}}
@@ -403,7 +403,7 @@
     \\
     \vspace{2.0mm}
     \ifthenelse{\isundefined{\@position}}{}{\headerpositionstyle{\@position\\}}
-    \vspace{0.4mm}
+    \vspace{0.8mm}
     % \ifthenelse{\isundefined{\@address}}{}{\headeraddressstyle{\@address\\}}
     % \vspace{0.4mm}
     \headersocialstyle{
@@ -412,7 +412,7 @@
       \ifthenelse{\isundefined{\@mobile}}
         {}
         {
-          \faMobile\ \@mobile
+          \faMobile\ \hspace{0.5mm} \@mobile
           \setbool{isstart}{false}
         }
       \ifthenelse{\isundefined{\@email}}
@@ -423,7 +423,7 @@
               \setbool{istart}{false} 
             }
             {\@headersocialsep}
-          \href{mailto:\@email}{\faEnvelope\ \@email}
+          \href{mailto:\@email}{\faEnvelope\ \hspace{0.5mm} \@email}
         }
       \ifthenelse{\isundefined{\@address}}
         {}
@@ -443,7 +443,7 @@
       \ifthenelse{\isundefined{\@homepage}}
         {}
         {
-          \href{http://\@homepage}{\faHome\ \@homepage}
+          \href{http://\@homepage}{\faHome\ \hspace{0.5mm} \@homepage}
           \setbool{isstart}{false}
         }
       \ifthenelse{\isundefined{\@github}}
@@ -454,7 +454,7 @@
               \setbool{istart}{false} 
             }
             {\@headersocialsep}
-          \href{https://github.com/\@github}{\faGithubSquare\ \@github}
+          \href{https://\@github}{\faGithubSquare\ \hspace{0.5mm} \@github}
         }
         \ifthenelse{\isundefined{\@linkedin}}
         {}
@@ -464,7 +464,7 @@
             \setbool{istart}{false} 
             }
             {\@headersocialsep}
-            \href{https://www.linkedin.com/in/\@linkedin}{\faLinkedinSquare\ \@linkedin}
+            \href{https://\@linkedin}{\faLinkedinSquare\ \hspace{0.5mm} \@linkedin}
             }
       \ifthenelse{\isundefined{\@stackoverflowid}}
         {}
@@ -474,7 +474,7 @@
               \setbool{istart}{false} 
             }
             {\@headersocialsep}
-            \href{https://stackoverflow.com/users/\@stackoverflowid}{\faStackOverflow\ \@stackoverflowname}
+            \href{https://stackoverflow.com/users/\@stackoverflowid}{\faStackOverflow\ \hspace{0.5mm} \@stackoverflowname}
         }
       \ifthenelse{\isundefined{\@twitter}}
         {}
@@ -484,7 +484,7 @@
               \setbool{istart}{false} 
             }
             {\@headersocialsep}
-          \href{https://twitter.com/\@twitter}{\faTwitter\ \@twitter}
+          \href{https://twitter.com/\@twitter}{\faTwitter\ \hspace{0.5mm} \@twitter}
         }
       \ifthenelse{\isundefined{\@skype}}
         {}
