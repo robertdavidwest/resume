@@ -51,6 +51,13 @@
 
 \usepackage{lastpage}
 
+\usepackage{ifthen}
+
+\newboolean{engManager} 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%% Choose to produce the : "Engineering Manager" or "Software Engineer" resume. 
+\setboolean{engManager}{false}
+
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %     Personal Data
@@ -66,11 +73,20 @@
 \linkedin{linkedin.com/in/robertdavidwest}
 \stackoverflow{3220100/robertwest}{robertwest}
 %%% Optionals
+
+\ifthenelse{\boolean{engManager}}{
+\position{
+    Engineering Manager{\enskip\cdotp\enskip}
+    Python/Javascript Developer{\enskip\cdotp\enskip}
+    U.S Permanent Resident
+    }
+  }{
 \position{
     Software Engineer{\enskip\cdotp\enskip}
     Python/Javascript Developer{\enskip\cdotp\enskip}
     U.S Permanent Resident
     }
+}
 
 % \quote{I live by the mantra: ``A complex system that  works is invariably found to have evolved from a simple system that worked." ~ I'm a Solutions Engineer with over 10 years of professional experience, spanning multiple industries, and a proven track record for finding simple solutions to complex data-centric problems
 % }
@@ -80,17 +96,28 @@
 %     Content
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%% Make a footer for CV with three arguments(<left>, <center>, <right>)
+
+
 \makecvfooter
  {\today}
  {Robert D. West~~~·~~~Résumé}
  {\thepage\ of \pageref{LastPage}}
 
+
 \begin{document}
+
+
+
 %%% Make a header for CV with personal data
 \makecvheader
 
+
 %%% Import contents
-\import{\sectiondir}{summary.tex}
+\ifthenelse{\boolean{engManager}}{
+  \import{\sectiondir}{eng_manager_summary.tex}
+  }{
+    \import{\sectiondir}{summary.tex}
+} 
 \import{\sectiondir}{skills.tex}
 \import{\sectiondir}{experience.tex}
 \import{\sectiondir}{otherExperience.tex}
