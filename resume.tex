@@ -53,11 +53,17 @@
 
 \usepackage{ifthen}
 
-\newboolean{engManager} 
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%%% Choose to produce the : "Engineering Manager" or "Software Engineer" resume. 
-\setboolean{engManager}{false}
 
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%% Choose to produce the : "Engineering Manager" or "Software Engineer" or 
+%%% "Data Engineer" resume.
+%%% with values `engManager`, `fullstack` or `data`.
+
+\newcommand{\resumeType}{data}
+% \newcommand{\resumeType}{engManager}
+% \newcommand{\resumeType}{data}
+% \newcommand{\resumeType}{fullstack}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %     Personal Data
@@ -74,18 +80,27 @@
 \stackoverflow{3220100/robertwest}{robertwest}
 %%% Optionals
 
-\ifthenelse{\boolean{engManager}}{
+\ifthenelse{\equal{\resumeType}{engManager}}{
 \position{
-    Engineering Manager{\enskip\cdotp\enskip}
-    Python/Javascript Developer{\enskip\cdotp\enskip}
+    Engineering Leader{\enskip\cdotp\enskip}
+    Python Developer{\enskip\cdotp\enskip}
     US/UK Dual Citizen
     }
   }{
-\position{
-    Data Engineer{\enskip\cdotp\enskip}
-    Python/Javascript Developer{\enskip\cdotp\enskip}
-    US/UK Dual Citizen
-    }
+  \ifthenelse{\equal{\resumeType}{fullstack}}{
+    \position{
+        Fullstack Software Engineer{\enskip\cdotp\enskip}
+        Python/Javascript Developer{\enskip\cdotp\enskip}
+        US/UK Dual Citizen
+        }
+
+  }{
+    \position{
+        Senior Data Engineer{\enskip\cdotp\enskip}
+        Python Developer{\enskip\cdotp\enskip}
+        US/UK Dual Citizen
+        }
+  }
 }
 
 % \quote{I live by the mantra: ``A complex system that  works is invariably found to have evolved from a simple system that worked." ~ I'm a Solutions Engineer with over 10 years of professional experience, spanning multiple industries, and a proven track record for finding simple solutions to complex data-centric problems
@@ -107,20 +122,23 @@
 \begin{document}
 
 
-
 %%% Make a header for CV with personal data
 \makecvheader
 
-
 %%% Import contents
-\ifthenelse{\boolean{engManager}}{
+\ifthenelse{\equal{\resumeType}{engManager}}{
   \import{\sectiondir}{eng_manager_summary.tex}
   }{
-    \import{\sectiondir}{summary.tex}
+   \ifthenelse{\equal{\resumeType}{fullstack}}{
+    \import{\sectiondir}{fs_summary.tex}
+   }{
+     \import{\sectiondir}{summary.tex}
+   }
 } 
+
 \import{\sectiondir}{skills.tex}
 \import{\sectiondir}{experience.tex}
-\import{\sectiondir}{otherExperience.tex}
+% \import{\sectiondir}{otherExperience.tex}
 \import{\sectiondir}{education.tex}
 % \import{\sectiondir}{honors.tex}
 \import{\sectiondir}{additionalinformation.tex}
